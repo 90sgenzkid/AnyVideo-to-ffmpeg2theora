@@ -7,6 +7,11 @@ from glob import glob
 theFolder = "videos" #the folder for videos
 current_ext = {".avi"} #to get only .avi video to convert
 
+#looks for the videos folder, if not, creates it
+getPath = r"videos"
+if not os.path.exists(getPath):
+    os.makedirs(getPath)
+
 #The folder where you put videos on
 getFiles = [os.path.abspath(f) for f in glob(os.path.join(theFolder, "*"))]
 
@@ -23,7 +28,7 @@ for file_path in getFiles:
         os.system(f"ffmpeg2theora-0.16.exe {os.path.abspath(file_path)}")
 
 #Removes .avi files after converting them to .ogg            
-if ext.endswith(".avi"): 
+if glob("*.avi"): 
     os.remove(file_path)
 
 print("JOB IS DONE")
