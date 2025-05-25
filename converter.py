@@ -1,4 +1,4 @@
-import os, time
+import os, time,subprocess
 from glob import glob
 # Any Video to ffmpeg2theora for Stalker Series, Making Cutscenes
 # By TheSparrowhawk
@@ -37,6 +37,6 @@ for file_path in getFiles:
             os.remove(file_path)
             
         #Renames .ogg files to .ogm to do it easily, without user input
-        os.system("MakeOGM.bat")
+        subprocess.run(['MakeOGM.bat'])
 
 print("JOB IS DONE")
