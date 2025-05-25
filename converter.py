@@ -1,4 +1,4 @@
-import os
+import os, time
 from glob import glob
 # Any Video to ffmpeg2theora for Stalker Series, Making Cutscenes
 # By TheSparrowhawk
@@ -10,7 +10,12 @@ current_ext = {".avi"} #to get only .avi video to convert
 #looks for the videos folder, if not, creates it
 getPath = r"videos"
 if not os.path.exists(getPath):
+    print("Videos Folder Doesn't Exist, Creating...")
     os.makedirs(getPath)
+    time.sleep(1)
+    print("Stopping this program, please add .avi videos into Videos folder.")
+    print("Exiting.")
+    exit(0)
 
 #The folder where you put videos on
 getFiles = [os.path.abspath(f) for f in glob(os.path.join(theFolder, "*"))]
@@ -27,8 +32,11 @@ for file_path in getFiles:
         #Start converting
         os.system(f"ffmpeg2theora-0.16.exe {os.path.abspath(file_path)}")
 
-#Removes .avi files after converting them to .ogg            
-if glob("*.avi"): 
-    os.remove(file_path)
+        #Removes .avi files after converting them to .ogg            
+        if ext == ".avi": 
+            os.remove(file_path)
+            
+        #Renames .ogg files to .ogm to do it easily, without user input
+        os.system("MakeOGM.bat")
 
 print("JOB IS DONE")
