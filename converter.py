@@ -1,7 +1,7 @@
 import os, time,subprocess
 from glob import glob
 # Any Video to ffmpeg2theora for Stalker Series, Making Cutscenes
-# By TheSparrowhawk
+# By 90sgenzkid
 # 2025
 
 theFolder = "videos" #the folder for videos
